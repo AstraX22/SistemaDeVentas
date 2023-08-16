@@ -1,0 +1,108 @@
+create database SistemaDeVentasDB;
+go
+
+use SistemaDeVentasDB;
+
+--Tablas Primarias
+
+create table Rol(
+Id int not null identity(1,1),
+Nombre nvarchar(30) not null,
+primary key(Id)
+);
+go
+create table Cliente(
+Id int not null identity(1,1),
+Nombre nvarchar(30) not null,
+Apellido nvarchar(30) not null,
+Direccion nvarchar(100) not null,
+Telefono nvarchar(15) not null,
+CorreoElectronico nvarchar(30) not null,
+Estado nvarchar(1) not null,
+primary key(Id)
+);
+go
+create table Categoria(
+Id int not null identity(1,1),
+Nombre nvarchar(30) not null,
+Estado nvarchar(1) not null,
+primary key(Id)
+);
+go
+
+--Tablas Foraneas--
+
+
+create table Producto(
+Id int not null identity(1,1),
+IdCategoria int not null,
+IdUsuario int not null,
+Nombre nvarchar(30),
+Precio float not null,
+Stock int not null,
+Estado nVarchar(1)not null,
+primary key(Id),
+foreign key(IdCategoria) references Categoria(Id),
+
+);
+go
+create table Usuario(
+Id int not null identity(1,1),
+IdRol int not null,
+Nombre nvarchar(30) not null,
+Apellido nvarchar(30) not null,
+[Login] nvarchar(25) not null,
+[Password] nchar(50) not null,
+primary key(Id),
+foreign key(IdRol) references Rol(Id)
+);
+go
+create table Venta(
+Id int not null identity(1,1),
+IdCliente int not null,
+IdUsuario int not null,
+NumerodeVenta nvarchar(30),
+FechadeVenta datetime not null,
+Precio float not null,
+Estado nVarchar(1)not null,
+primary key(Id),
+foreign key(IdCliente) references Cliente(Id),
+foreign key(IdUsuario) references Usuario(Id)
+);
+go
+
+create table DetalleVenta(
+Id int not null identity(1,1),
+IdVenta int not null,
+IdProducto int not null,
+IdCategoria int not null,
+Cantidad nvarchar(10) not null,
+PrecioVenta float not null,
+Estado nvarchar(1),
+primary key(Id),
+foreign key(IdVenta) references Venta(Id),
+foreign key(IdProducto) references Producto(Id),
+foreign key(IdCategoria) references Categoria(Id)
+);
+go
+
+insert into Rol(Nombre) values('Administrador');
+
+--password: admin2023 
+insert into Usuario(IdRol, Nombre, Apellido, [Login], [Password]) 
+values(1, 'Juan', 'Pérez', 'jp', 'admin2023');
+
+--------------------------------------------------------------------------------------------
+--CREACIÓN DEL INICIO DE SESIÓN Y EL USUARIO PARA CONECTAR CON LA BD DESDE JAVA---
+--------------------------------------------------------------------------------------------
+-- CREACION DEL LOGIN
+CREATE LOGIN [Usuario]
+WITH PASSWORD = '123456789',
+DEFAULT_DATABASE = SistemaDeVentasDB,
+CHECK_POLICY = OFF,
+CHECK_EXPIRATION = OFF;
+
+-- ASIGNACIÓN DE PERMISOS
+USE SistemaDeVentasDB;
+CREATE USER [Usuario] FOR LOGIN [Usuario] WITH DEFAULT_SCHEMA = dbo;
+ALTER ROLE db_owner ADD MEMBER [Usuario];

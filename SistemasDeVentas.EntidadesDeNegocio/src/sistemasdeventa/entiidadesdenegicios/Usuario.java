@@ -3,22 +3,42 @@ package sistemasdeventa.entiidadesdenegicios;
 import java.util.ArrayList;
 
 public class Usuario {
+   private int id;
+    private int idRol;
     private String nombre;
-    private String Id;
+    private String apellido;
+    private String login;
+    private String password;
     private int top_aux;
-    
-    
-    
-    //Constructor
-    public Usuario() {
-    }
-     
-    public Usuario(String nombre, String Id, int top_aux) {
+    private Rol rol;
+
+    public Usuario(int id, int idRol, String nombre, String apellido, String login, String password, int top_aux, Rol rol) {
+        this.id = id;
+        this.idRol = idRol;
         this.nombre = nombre;
-        this.Id = Id;
+        this.apellido = apellido;
+        this.login = login;
+        this.password = password;
         this.top_aux = top_aux;
+        this.rol = rol;
     }
-    //Getter y setter
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getIdRol() {
+        return idRol;
+    }
+
+    public void setIdRol(int idRol) {
+        this.idRol = idRol;
+    }
+
     public String getNombre() {
         return nombre;
     }
@@ -26,13 +46,29 @@ public class Usuario {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    
-    public String getId() {
-        return Id;
+
+    public String getApellido() {
+        return apellido;
     }
 
-    public void setId(String Id) {
-        this.Id = Id;
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public int getTop_aux() {
@@ -41,7 +77,19 @@ public class Usuario {
 
     public void setTop_aux(int top_aux) {
         this.top_aux = top_aux;
-    } 
+    }
+
+    public Rol getRol() {
+        return rol;
+    }
+
+    public void setRol(Rol rol) {
+        this.rol = rol;
+    }
+    
+    
+ 
+    
 }
 
    
