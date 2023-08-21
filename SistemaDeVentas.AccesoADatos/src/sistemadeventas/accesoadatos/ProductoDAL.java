@@ -6,7 +6,7 @@ import sistemasdeventa.entiidadesdenegicios.Cliente;
 
 public class ProductoDAL {
     static String obtenerCampos() {
-    return "c.Id, c.Nombre";
+    return "p.Id, p.Nombre, p.Precio";
 }
 
 private static String obtenerSelect(Cliente pCliente) {

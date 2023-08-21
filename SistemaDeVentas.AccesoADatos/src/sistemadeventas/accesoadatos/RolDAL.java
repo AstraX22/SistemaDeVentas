@@ -7,7 +7,7 @@ import sistemasdeventa.entiidadesdenegicios.Rol;
 
 
 public class RolDAL {
-     static String obtenerCampos() {
+        static String obtenerCampos() {
         return "r.Id, r.Nombre";
     }
     

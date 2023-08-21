@@ -9,25 +9,24 @@ public class Usuario {
     private String apellido;
     private String login;
     private String password;
+    private String confirmPassword_aux;
     private int top_aux;
     private Rol rol;
+    
+    public Usuario(){}
 
-    public Usuario(int id, int idRol, String nombre, String apellido, String login, String password, int top_aux, Rol rol) {
+    public Usuario(int id, int idRol, String nombre, String apellido, String login, String password, String confirmPassword_aux, int top_aux, Rol rol) {
         this.id = id;
         this.idRol = idRol;
         this.nombre = nombre;
         this.apellido = apellido;
         this.login = login;
         this.password = password;
+        this.confirmPassword_aux = confirmPassword_aux;
         this.top_aux = top_aux;
         this.rol = rol;
     }
 
-    public Usuario() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-   
     public int getId() {
         return id;
     }
@@ -76,6 +75,14 @@ public class Usuario {
         this.password = password;
     }
 
+    public String getConfirmPassword_aux() {
+        return confirmPassword_aux;
+    }
+
+    public void setConfirmPassword_aux(String confirmPassword_aux) {
+        this.confirmPassword_aux = confirmPassword_aux;
+    }
+
     public int getTop_aux() {
         return top_aux;
     }
@@ -91,10 +98,7 @@ public class Usuario {
     public void setRol(Rol rol) {
         this.rol = rol;
     }
-    
-    
- 
-    
-}
 
    
+
+}
