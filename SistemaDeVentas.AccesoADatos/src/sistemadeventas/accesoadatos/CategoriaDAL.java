@@ -150,6 +150,12 @@ public static ArrayList<Categoria> obtenerTodos() throws Exception {
 
     return categorias;
 }
+
+    public static ArrayList<Categoria> buscar(Categoria categoria) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+   
 }
 
 

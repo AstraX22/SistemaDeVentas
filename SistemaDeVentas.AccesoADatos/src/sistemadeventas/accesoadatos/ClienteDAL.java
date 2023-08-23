@@ -150,6 +150,10 @@ public static ArrayList<Cliente> obtenerTodos() throws Exception {
     return clientes;
 }
 
+    public static ArrayList<Cliente> buscar(Cliente cliente) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
 
 
 }
