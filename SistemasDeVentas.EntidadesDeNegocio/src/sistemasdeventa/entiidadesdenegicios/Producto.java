@@ -9,24 +9,24 @@ public class Producto {
     private int idUsuario;
     private String nombre;
     private double precio;
-    private int stock;
     private int top_aux;
     private Categoria categoria;
     private Usuario usuario;
 
-    public Producto(int id, int idCategoria, int idUsuario, String nombre, double precio, int stock, int top_aux, Categoria categoria, Usuario usuario) {
+    public Producto() {
+    }    
+   
+    public Producto(int id, int idCategoria, int idUsuario, String nombre, double precio, int top_aux, Categoria categoria, Usuario usuario) {
         this.id = id;
         this.idCategoria = idCategoria;
         this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.precio = precio;
-        this.stock = stock;
         this.top_aux = top_aux;
         this.categoria = categoria;
         this.usuario = usuario;
     }
-
-    public int getId() {
+     public int getId() {
         return id;
     }
 
@@ -66,14 +66,6 @@ public class Producto {
         this.precio = precio;
     }
 
-    public int getStock() {
-        return stock;
-    }
-
-    public void setStock(int stock) {
-        this.stock = stock;
-    }
-
     public int getTop_aux() {
         return top_aux;
     }
@@ -97,6 +89,6 @@ public class Producto {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-  
-    
+
+
 }
