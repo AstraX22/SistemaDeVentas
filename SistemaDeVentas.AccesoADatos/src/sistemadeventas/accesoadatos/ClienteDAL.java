@@ -72,7 +72,7 @@ public static int eliminar(Cliente pCliente) throws Exception {
     try (Connection conn = ComunDB.obtenerConexion();) {
         sql = "DELETE FROM Cliente WHERE Id=?";
         try (PreparedStatement ps = ComunDB.createPreparedStatement(conn, sql);) {
-            ps.setString(1, pCliente.getId());
+            ps.setInt(1, pCliente.getId());
             result = ps.executeUpdate();
             ps.close();
         } catch (SQLException ex) {
@@ -113,7 +113,7 @@ public static Cliente obtenerPorId(Cliente pCliente) throws Exception {
         String sql = obtenerSelect(pCliente);
         sql += " WHERE c.Id=?";
         try (PreparedStatement ps = ComunDB.createPreparedStatement(conn, sql);) {
-            ps.setString(1, pCliente.getId());
+            ps.setInt(1, pCliente.getId());
             obtenerDatos(ps, clientes);
             ps.close();
         } catch (SQLException ex) {
