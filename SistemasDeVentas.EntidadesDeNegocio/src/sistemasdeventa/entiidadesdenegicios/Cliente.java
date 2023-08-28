@@ -7,16 +7,16 @@ public class Cliente {
     private String apellido;
     private String direccion;
     private String telefono;
-    private String correoelectronico;
+    private String correo;
     private int Id;
     private int top_aux;
 
-    public Cliente(String nombre, String apellido, String direccion, String telefono, String correoelectronico, int Id, int top_aux) {
+    public Cliente(String nombre, String apellido, String direccion, String telefono, String correo, int Id, int top_aux) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.direccion = direccion;
         this.telefono = telefono;
-        this.correoelectronico = correoelectronico;
+        this.correo = correo;
         this.Id = Id;
         this.top_aux = top_aux;
     }
@@ -53,12 +53,12 @@ public class Cliente {
         this.telefono = telefono;
     }
 
-    public String getCorreoelectronico() {
-        return correoelectronico;
+    public String getCorreo() {
+        return correo;
     }
 
-    public void setCorreoelectronico(String correoelectronico) {
-        this.correoelectronico = correoelectronico;
+    public void setCorreo(String correo) {
+        this.correo = correo;
     }
 
     public int getId() {
@@ -82,6 +82,8 @@ public class Cliente {
     public Cliente() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+  
 
    
 
