@@ -1,5 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="controlempresas.appweb.utils.Utilidad"%>
+<%@page import="sistemadeventas.appweb.utils.Utilidad"%>
 <%@page import="jakarta.servlet.http.HttpServletRequest"%>
 
 <!--Import Google Icon Font-->

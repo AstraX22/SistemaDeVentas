@@ -1,10 +1,10 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="controlempresas.appweb.utils.*"%>
+<%@page import="sistemadeventas.appweb.utils.*"%>
 <%@page import="jakarta.servlet.http.HttpServletRequest"%>
 
 <nav>
     <div class="nav-wrapper blue">
-        <a href="Home" class="brand-logo">App Empresas</a>
+        <a href="Home" class="brand-logo">Sistema de Ventas</a>
         <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>       
         <ul class="right hide-on-med-and-down">  
             <% if (SessionUser.isAuth(request)) {  %>
