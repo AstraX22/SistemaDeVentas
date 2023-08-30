@@ -1,5 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="controlempresas.appweb.utils.*"%>
+<%@page import="sistemadeventas.appweb.utils.*"%>
 <%@page import="jakarta.servlet.http.HttpServletRequest"%>
 
 <nav>
