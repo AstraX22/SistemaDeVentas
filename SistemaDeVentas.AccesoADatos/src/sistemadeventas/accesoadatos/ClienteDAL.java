@@ -50,18 +50,18 @@ public class ClienteDAL {
         return result;
     }
     
-    public static int modificar(Cliente pCliente) throws Exception {
+   public static int modificar(Cliente pCliente) throws Exception {
         int result;
         String sql;
         try (Connection conn = ComunDB.obtenerConexion();) {
-            sql = "UPDATE Cliente SET Nombre=?, Apellido = ?, Direccion= ?, Telefono = ?, Correo =? WHERE Id=?";
+            sql = "UPDATE Cliente SET Nombre=?, Apellido = ?, Direccion = ?, Telefono = ?, WHERE Id=?";
             try (PreparedStatement ps = ComunDB.createPreparedStatement(conn, sql);) {
                 ps.setString(1, pCliente.getNombre());
                 ps.setString(2, pCliente.getApellido());
                 ps.setString(3, pCliente.getDireccion());
                 ps.setString(4, pCliente.getTelefono());
-                ps.setString(5, pCliente.getCorreo());
-                ps.setInt(6, pCliente.getId());
+                ps.setString(4, pCliente.getCorreo());
+                ps.setInt(5, pCliente .getId());
                 result = ps.executeUpdate();
                 ps.close();
             } catch (SQLException ex) {
@@ -73,26 +73,12 @@ public class ClienteDAL {
         }
         return result;
     }
-<<<<<<< HEAD
-    return result;
-}
 
-public static int eliminar(Cliente pCliente) throws Exception {
-    int result;
-    String sql;
-    try (Connection conn = ComunDB.obtenerConexion();) {
-        sql = "DELETE FROM Cliente WHERE Id=?";
-        try (PreparedStatement ps = ComunDB.createPreparedStatement(conn, sql);) {
-            ps.setInt(1, pCliente.getId());
-            result = ps.executeUpdate();
-            ps.close();
-=======
-    
-    public static int eliminar(Cliente pCliente) throws Exception {
+ public static int eliminar(Cliente pCliente) throws Exception {
         int result;
         String sql;
         try (Connection conn = ComunDB.obtenerConexion();) {
-            sql = "DELETE FROM Cliente WHERE Id=?";
+            sql = "DELETE FROM Contacto WHERE Id=?";
             try (PreparedStatement ps = ComunDB.createPreparedStatement(conn, sql);) {
                 ps.setInt(1, pCliente.getId());
                 result = ps.executeUpdate();
@@ -101,14 +87,13 @@ public static int eliminar(Cliente pCliente) throws Exception {
                 throw ex;
             }
             conn.close();
->>>>>>> b79ce4cfdb523d190e5b9e18bc0eada92702d3d1
         } catch (SQLException ex) {
             throw ex;
         }
         return result;
     }
-    
-    static int asignarDatosResultSet(Cliente pCliente, ResultSet pResultSet, int pIndex) throws Exception {
+
+  static int asignarDatosResultSet(Cliente pCliente, ResultSet pResultSet, int pIndex) throws Exception {
         pIndex++;
         pCliente.setId(pResultSet.getInt(pIndex));
         pIndex++;
@@ -123,36 +108,21 @@ public static int eliminar(Cliente pCliente) throws Exception {
         pCliente.setCorreo(pResultSet.getString(pIndex));
         return pIndex;
     }
-<<<<<<< HEAD
-}
-
-public static Cliente obtenerPorId(Cliente pCliente) throws Exception {
-    Cliente cliente = new Cliente();
-    ArrayList<Cliente> clientes = new ArrayList<>();
-    try (Connection conn = ComunDB.obtenerConexion();) {
-        String sql = obtenerSelect(pCliente);
-        sql += " WHERE c.Id=?";
-        try (PreparedStatement ps = ComunDB.createPreparedStatement(conn, sql);) {
-            ps.setInt(1, pCliente.getId());
-            obtenerDatos(ps, clientes);
-            ps.close();
-=======
     
-    private static void obtenerDatos(PreparedStatement pPS, ArrayList<Cliente> pCliente) throws Exception {
+    private static void obtenerDatos(PreparedStatement pPS, ArrayList<Cliente> pClientes) throws Exception {
         try (ResultSet resultSet = ComunDB.obtenerResultSet(pPS);) {
             while (resultSet.next()) {
                 Cliente cliente = new Cliente(); 
                 asignarDatosResultSet(cliente, resultSet, 0);
-                pCliente.add(cliente);
+                pClientes.add(cliente);
             }
             resultSet.close();
->>>>>>> b79ce4cfdb523d190e5b9e18bc0eada92702d3d1
         } catch (SQLException ex) {
             throw ex;
         }
     }
-    
-    public static Cliente obtenerPorId(Cliente pCliente) throws Exception {
+
+ public static Cliente obtenerPorId(Cliente pCliente) throws Exception {
         Cliente cliente = new Cliente();
         ArrayList<Cliente> clientes = new ArrayList();
         try (Connection conn = ComunDB.obtenerConexion();) { 
@@ -175,27 +145,8 @@ public static Cliente obtenerPorId(Cliente pCliente) throws Exception {
         }
         return cliente;
     }
-    
-    public static ArrayList<Cliente> obtenerTodos() throws Exception {
-        ArrayList<Cliente> clientes = new ArrayList<>();
-        try (Connection conn = ComunDB.obtenerConexion();) {
-            String sql = obtenerSelect(new Cliente());
-            sql += agregarOrderBy(new Cliente());
-            try (PreparedStatement ps = ComunDB.createPreparedStatement(conn, sql);) {
-                obtenerDatos(ps, clientes);
-                ps.close();
-            } catch (SQLException ex) {
-                throw ex;
-            }
-            conn.close();
-        } 
-        catch (SQLException ex) {
-            throw ex;
-        }
-        return clientes;
-    }
-    
-    static void querySelect(Cliente pCliente, ComunDB.utilQuery pUtilQuery) throws SQLException {
+
+ static void querySelect(Cliente pCliente, ComunDB.utilQuery pUtilQuery) throws SQLException {
         PreparedStatement statement = pUtilQuery.getStatement();
         if (pCliente.getId() > 0) {
             pUtilQuery.AgregarNumWhere(" c.Id=? ");
@@ -205,43 +156,41 @@ public static Cliente obtenerPorId(Cliente pCliente) throws Exception {
         }
 
         if (pCliente.getNombre() != null && pCliente.getNombre().trim().isEmpty() == false) {
-           pUtilQuery.AgregarNumWhere(" c.Nombre LIKE ? "); 
+            pUtilQuery.AgregarNumWhere(" c.Nombre LIKE ? "); 
             if (statement != null) {
                 statement.setString(pUtilQuery.getNumWhere(), "%" + pCliente.getNombre() + "%"); 
             }
         }
-        if (pCliente.getApellido() != null && pCliente.getApellido().trim().isEmpty() == false) {
+        
+        if (pCliente.getApellido()!= null && pCliente.getApellido().trim().isEmpty() == false) {
             pUtilQuery.AgregarNumWhere(" c.Apellido LIKE ? "); 
             if (statement != null) {
-                statement.setString(pUtilQuery.getNumWhere(), "%" + pCliente.getApellido() + "%"); 
+                statement.setString(pUtilQuery.getNumWhere(), "%" + pCliente.getApellido()+ "%"); 
             }
         }
-        
-        if (pCliente.getDireccion() != null && pCliente.getDireccion().trim().isEmpty() == false) {
+        if (pCliente.getDireccion()!= null && pCliente.getDireccion().trim().isEmpty() == false) {
             pUtilQuery.AgregarNumWhere(" c.Direccion LIKE ? "); 
             if (statement != null) {
-                statement.setString(pUtilQuery.getNumWhere(), "%" + pCliente.getDireccion() + "%"); 
+                statement.setString(pUtilQuery.getNumWhere(), "%" + pCliente.getDireccion()+ "%"); 
             }
         }
-       
         
-        if (pCliente.getTelefono()!= null && pCliente.getTelefono().trim().isEmpty() == false) {
+     if (pCliente.getTelefono()!= null && pCliente.getTelefono().trim().isEmpty() == false) {
             pUtilQuery.AgregarNumWhere(" c.Telefono LIKE ? "); 
             if (statement != null) {
                 statement.setString(pUtilQuery.getNumWhere(), "%" + pCliente.getTelefono()+ "%"); 
             }
         }
-         if (pCliente.getCorreo()!= null && pCliente.getCorreo().trim().isEmpty() == false) {
+        
+        if (pCliente.getCorreo()!= null && pCliente.getCorreo().trim().isEmpty() == false) {
             pUtilQuery.AgregarNumWhere(" c.Correo LIKE ? "); 
             if (statement != null) {
                 statement.setString(pUtilQuery.getNumWhere(), "%" + pCliente.getCorreo()+ "%"); 
             }
         }
-        
-       
     }
     
-    public static ArrayList<Cliente> buscar(Cliente pCliente) throws Exception {
+  public static ArrayList<Cliente> buscar(Cliente pCliente) throws Exception {
         ArrayList<Cliente> clientes = new ArrayList();
         try (Connection conn = ComunDB.obtenerConexion();) {
             String sql = obtenerSelect(pCliente);
@@ -268,7 +217,3 @@ public static Cliente obtenerPorId(Cliente pCliente) throws Exception {
         return clientes;
     }
 }
-
-
-
-

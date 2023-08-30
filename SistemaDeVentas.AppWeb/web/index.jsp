@@ -8,10 +8,11 @@
         <ul class="right hide-on-med-and-down">  
             <% if (SessionUser.isAuth(request)) {  %>
             <li><a href="Home">Inicio</a></li>
-            <li><a href="Contacto">Contactos</a></li>
-            <li><a href="Empresa">Empresas</a></li>
+            <li><a href="Categoria">Categorias</a></li>
+            <li><a href="Cliente">Clientes</a></li>
             <li><a href="Usuario">Usuarios</a></li>
-            <li><a href="Rol">Roles</a></li>
+            <li><a href="Producto">Productos</a></li>
+            <li><a href="Roles">Roles</a></li>
             <li><a href="Usuario?accion=cambiarpass">Cambiar password</a></li>
             <li><a href="Usuario?accion=login">Cerrar sesión</a></li>
             <%}%>
@@ -21,11 +22,12 @@
 
 <ul class="sidenav" id="mobile-demo">
      <% if (SessionUser.isAuth(request)) {  %>
-     <li><a href="Home">Inicio</a></li>
-     <li><a href="Contacto">Contactos</a></li>
-     <li><a href="Empresa">Empresas</a></li>
-     <li><a href="Usuario">Usuarios</a></li>
-     <li><a href="Rol">Roles</a></li>
+            <li><a href="Home">Inicio</a></li>
+            <li><a href="Categoria">Categorias</a></li>
+            <li><a href="Cliente">Clientes</a></li>
+            <li><a href="Usuario">Usuarios</a></li>
+            <li><a href="Producto">Productos</a></li>
+            <li><a href="Roles">Roles</a></li>
      <li><a href="Usuario?accion=cambiarpass">Cambiar password</a></li>
      <li><a href="Usuario?accion=login">Cerrar sesión</a></li>
      <%}%>
