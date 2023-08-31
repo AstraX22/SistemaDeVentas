@@ -12,11 +12,13 @@ public class ComunDB {
     static int TIPODB = TipoDB.SQLSERVER;
     
     static String connectionUrlSqlServer = "jdbc:sqlserver://localhost;"
+            + "instanceName=TATIANA;"
             + "database=SistemaDeVentasDB;"
-            + "user=      Usuario;"
+            + "user=User;"
             + "password=123456789;"
             + "loginTimeout=30;encrypt=false;trustServerCertificate=false";
     
+  
     public static Connection obtenerConexion() throws SQLException {
         if(TIPODB == 1){
             DriverManager.registerDriver(new com.microsoft.sqlserver.jdbc.SQLServerDriver());
